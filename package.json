@@ -1,0 +1,23 @@
+{
+  "name": "readme-helper",
+  "version": "0.0.0",
+  "description": "a helper for github readme. it supports extract all md file to readme by a template generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "test/index.js"
+  },
+  "bin": {
+    "readme-helper": "./bin/index"
+  },
+  "keywords": [
+    "readme",
+    "build"
+  ],
+  "author": "sivagao [sivagao@126.com]",
+  "license": "ISC",
+  "dependencies": {
+    "filewalker": "^0.1.2",
+    "moment": "^2.7.0",
+    "underscore": "^1.6.0"
+  }
+}
