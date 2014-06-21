@@ -1,6 +1,6 @@
 {
   "name": "readme-helper",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a helper for github readme. it supports extract all md file to readme by a template generator",
   "main": "index.js",
   "scripts": {
