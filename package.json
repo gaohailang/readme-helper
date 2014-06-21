@@ -1,13 +1,13 @@
 {
   "name": "readme-helper",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "a helper for github readme. it supports extract all md file to readme by a template generator",
   "main": "index.js",
   "scripts": {
     "test": "test/index.js"
   },
   "bin": {
-    "readme-helper": "./bin/index"
+    "readme-helper": "./bin/index.js"
   },
   "keywords": [
     "readme",

@@ -6,8 +6,8 @@ var fs = require('fs');
 
 moment.lang('zh-cn');
 
-var mdListTpl = "<% _.each(mdList, function(md, name) { %>| <%= name %> | <%= md.size %>字节 | <%= formatDate(md.mtime) %>|\n<% }); %>";
-var mdListPreTpl = '| 文件名        | 大小           | 修改时间  |\n| ------------- |:-------------:| -----:|\n';
+var mdListTpl = "<% _.each(mdList, function(md, name) { %>| <%= name %> | <%= md.size %>字节 | <%= formatDate(md.mtime) %>| <%= summaryMd(md.content) %>|\n<% }); %>";
+var mdListPreTpl = '| 文件名        | 大小           | 修改时间  |    正文     |\n| ------------- |:-------------:| -----:|\n';
 
 // TODO 支持类 grunt 的 folder 和 file 的描述方式
 var fwOption = {
@@ -17,6 +17,21 @@ var fwOption = {
 
 function formatDate(date) {
   return moment(date).fromNow();
+}
+
+
+function summaryMd(content) {
+  // get the first title's param, limit to 30 characters
+  var regexp = /#+.*?\n(.*)\n/;
+  var match = content.match(regexp);
+  if(match && match[1]) {
+    return match[1].slice(0, 80); // first group
+  }
+  if(content.split('\n')[1]) {
+    return content.split('\n')[1].slice(0, 80);
+  } else {
+    return '<暂无内容>';
+  }
 }
 
 function walkAllMd(cb) {
@@ -34,7 +49,7 @@ function walkAllMd(cb) {
         fileReadCount += 1;
         if (fileReadCount === Object.keys(scanFileMap).length) {
           // console.log(scanFileMap);
-          var out = _.template(mdListTpl, {mdList: scanFileMap, formatDate: formatDate});
+          var out = _.template(mdListTpl, {mdList: scanFileMap, formatDate: formatDate, summaryMd: summaryMd});
           out = mdListPreTpl + out;
           cb(out);
         }
