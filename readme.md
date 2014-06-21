@@ -1,4 +1,5 @@
-# helper for generating readme file automatically
+## readme-helper
+helper for generating readme file automatically
 
 ## Usage
 
